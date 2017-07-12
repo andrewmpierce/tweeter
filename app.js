@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -41,6 +42,21 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var db = process.env.MONGODB_URI || "mongodb://localhost/Tweeter";
+
+// Connect mongoose to our database
+mongoose.connect(db, function(error) {
+  // Log any errors connecting with mongoose
+  if (error) {
+    console.log(error);
+  }
+  // Or log a success message
+  else {
+    console.log("mongoose connection is successful");
+  }
 });
 
 module.exports = app;
