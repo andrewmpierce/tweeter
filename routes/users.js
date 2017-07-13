@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
 			console.log(data);
       //res.json(data);
     });
-	console.log("YAYYY");
   res.json([{
   	id: 1,
   	username: "samsepi0l"
