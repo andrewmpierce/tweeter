@@ -15,6 +15,7 @@ module.exports = {
         // Once finished, pass the list into the callback function
         cb(doc);
       });
-  },
+
+  }
 
 };
