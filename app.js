@@ -6,7 +6,6 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-//var index = require('./routes/index');
 var users = require('./routes/users');
 var users_new = require ('./routes/users_new');
 
@@ -26,7 +25,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', index);
+
+//use all of our endpoints
 app.use('/api/users', users);
 app.use('/api/user/new', users_new);
 
