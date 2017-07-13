@@ -6,12 +6,14 @@ class App extends Component {
   state = {users: []}
 
   componentDidMount() {
-    fetch('/users')
+    fetch('/api')
       .then(res => res.json())
       .then(users => this.setState({ users }));
+      console.log(this.state.users);
   }
 
   render() {
+    console.log(this.state.users);
     return (
       <Header />
     );
