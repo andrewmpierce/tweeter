@@ -9,6 +9,7 @@ class App extends Component {
     fetch('/users')
       .then(res => res.json())
       .then(users => this.setState({ users }));
+      console.log(this.state.users);
   }
 
   render() {
