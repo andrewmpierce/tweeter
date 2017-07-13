@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import Header from './components/header.js';
-
+import Header from './components/header';
+import NewUserForm from './components/new_user_form';
 class App extends Component {
   state = {users: []}
 
   componentDidMount() {
-    fetch('/api')
+    fetch('/api/users')
       .then(res => res.json())
       .then(users => this.setState({ users }));
       console.log(this.state.users);
@@ -17,6 +17,7 @@ class App extends Component {
     return (
       <div>
       <Header />
+      <NewUserForm />
         <div className="App">
          <h1>Users</h1>
          {this.state.users.map(user =>
