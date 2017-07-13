@@ -23,6 +23,7 @@ module.exports = {
       username: data.username,
       password: data.password
     };
+    
     User.create(newUser, function(err, doc) {
       // Log any errors
       if (err) {
