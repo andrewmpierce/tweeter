@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 class UserList extends Component {
-  state = {users: []}
+  state = {users: []};
 
   componentDidMount() {
     fetch('/api/users')
