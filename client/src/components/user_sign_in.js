@@ -37,7 +37,7 @@ class UserSignInForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="username" placeholder="username" />
           <input type="text" name="password" placeholder="password" />
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Login" />
 
         </form>
       </div>

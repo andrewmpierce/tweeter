@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class NewUserForm extends Component {
+class NewTweetForm extends Component {
   constructor(props) {
      super(props);
      this.handleSubmit = this.handleSubmit.bind(this);
@@ -9,15 +9,15 @@ class NewUserForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    fetch('/api/user/new', {
+    fetch('/api/tweet/new', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: event.target.username.value,
-        password: event.target.password.value,
+        username: this.props.username,
+        tweet: this.state.tweet
       })
     });
 }
@@ -26,11 +26,10 @@ class NewUserForm extends Component {
   render() {
     return (
       <div>
-        <h6>Sign Up</h6>
+        <h6>Tweet Away!</h6>
         <form onSubmit={this.handleSubmit}>
-          <input type="text" name="username" placeholder="username" />
-          <input type="text" name="password" placeholder="password" />
-          <input type="submit" value="Sign Up" />
+          <input type="text" name="new_tweet" placeholder="Tweets..." />
+          <input type="submit" value="Tweet" />
 
         </form>
       </div>
@@ -38,4 +37,4 @@ class NewUserForm extends Component {
   }
 }
 
-export default NewUserForm;
+export default NewTweetForm;
