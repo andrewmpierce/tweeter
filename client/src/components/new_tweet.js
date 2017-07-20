@@ -17,7 +17,7 @@ class NewTweetForm extends Component {
       },
       body: JSON.stringify({
         _id: this.props._id,
-        tweet: event.target.new_tweet.value
+        text: event.target.new_tweet.value
       })
     });
 }

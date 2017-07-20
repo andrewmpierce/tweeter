@@ -13,7 +13,7 @@ var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
 
-var users = require('./routes/users');
+var tweets = require('./routes/tweets');
 var users_new = require ('./routes/users_new');
 //var users_sign_in = require('./routes/user_sign_in');
 var tweet_new = require('./routes/new_tweet');
@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //use all of our endpoints
-app.use('/api/users', users);
+app.use('/api/tweets', tweets);
 app.use('/api/user/new', users_new);
 app.use('/api/tweet/new', tweet_new);
 

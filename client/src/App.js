@@ -3,7 +3,7 @@ import './App.css';
 import Header from './components/header';
 import NewUserForm from './components/new_user_form';
 import UserSignInForm from './components/user_sign_in';
-import UserList from './components/user_list';
+import TweetList from './components/tweet_list';
 import CurrentUser from './components/current_user';
 import NewTweet from './components/new_tweet';
 
@@ -35,6 +35,7 @@ class App extends Component {
         <NewUserForm />
         <UserSignInForm onUserLogIn={this.updateCurrentUser} />
         <NewTweet _id={this.state.currentUserID} />
+        <TweetList />
       </div>
     );
   }

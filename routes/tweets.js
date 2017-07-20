@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var userController = require('../controllers/user');
+var TweetController = require('../controllers/tweet');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -9,9 +9,8 @@ router.get('/', function(req, res, next) {
 
   // And insert something like this instead:
 	var query = {};
-	userController.getAll(query, function(data) {
+	TweetController.getAll(query, function(data) {
       // Send the article data back as JSON
-			//console.log(data);
       res.json(data);
     });
 });
