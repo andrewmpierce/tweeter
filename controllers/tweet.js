@@ -1,3 +1,5 @@
+var Tweet = require('../models/tweet');
+
 module.exports = {
 
   getAll: function(query, cb) {
@@ -28,12 +30,12 @@ module.exports = {
 
   save: function(data, cb) {
     // Make a newNote with the note model, saving the apropos info
+    console.log(data);
     var newTweet = {
       dateJoined: Date(),
       tweet: data.tweet,
       _userId: data._id
     };
-
     Tweet.create(newTweet, function(err, doc) {
       // Log any errors
       if (err) {

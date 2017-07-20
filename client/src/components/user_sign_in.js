@@ -24,6 +24,7 @@ class UserSignInForm extends Component {
         console.log(response);
         if (response.response === "Successfully logged in") {
           localStorage.setItem('userLoggedIn', response.session.passport.user.username);
+          localStorage.setItem('userLoggedInID', response.session.passport.user._id);
           this.props.onUserLogIn();
         }
     })

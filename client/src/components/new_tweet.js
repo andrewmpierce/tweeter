@@ -9,6 +9,7 @@ class NewTweetForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log(this.props._id);
     fetch('/api/tweet/new', {
       method: 'POST',
       headers: {
@@ -16,8 +17,8 @@ class NewTweetForm extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        username: this.props.username,
-        tweet: this.state.tweet
+        _id: this.props._id,
+        tweet: event.target.new_tweet.value
       })
     });
 }

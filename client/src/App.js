@@ -5,6 +5,7 @@ import NewUserForm from './components/new_user_form';
 import UserSignInForm from './components/user_sign_in';
 import UserList from './components/user_list';
 import CurrentUser from './components/current_user';
+import NewTweet from './components/new_tweet';
 
 class App extends Component {
   constructor(props) {
@@ -13,21 +14,28 @@ class App extends Component {
 
   }
 
-  state = {currentUser: localStorage.getItem('userLoggedIn')};
+  state = {
+    currentUser: localStorage.getItem('userLoggedIn'),
+    currentUserID: localStorage.getItem('userLoggedInID')
+  };
 
 
   updateCurrentUser() {
-    this.setState({currentUser: localStorage.getItem('userLoggedIn') });
+    this.setState({
+      currentUser: localStorage.getItem('userLoggedIn'),
+      currentUserID: localStorage.getItem('userLoggedInID')
+     });
   }
 
   render() {
+    console.log(this.state);
     return (
       <div>
         <Header />
         <CurrentUser currentUser={this.state.currentUser} />
         <NewUserForm />
         <UserSignInForm onUserLogIn={this.updateCurrentUser} />
-        <UserList />
+        <NewTweet _id={this.state.currentUserID} />
       </div>
     );
   }

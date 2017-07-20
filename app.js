@@ -16,6 +16,7 @@ var MongoStore = require('connect-mongo')(session);
 var users = require('./routes/users');
 var users_new = require ('./routes/users_new');
 //var users_sign_in = require('./routes/user_sign_in');
+var tweet_new = require('./routes/new_tweet');
 
 var app = express();
 
@@ -41,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //use all of our endpoints
 app.use('/api/users', users);
 app.use('/api/user/new', users_new);
+app.use('/api/tweet/new', tweet_new);
 
 ////////////////////////////////////////////////
 //Handle user log in and authentication
@@ -61,8 +63,6 @@ app.post('/api/user/login',
   }),
   function(req, res) {
     console.log(req.session);
-    //req.session.passport.user.username = id;
-    //req.session.save();
     res.send({"response":"Successfully logged in",
               "session": req.session});
   });
@@ -78,9 +78,6 @@ app.post('/api/user/login',
   app.get('/loginFailure', function(req, res, next) {
     res.send({"response":'Failed to authenticate'});
   });
-
-
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -113,15 +110,6 @@ mongoose.connect(dbURL, function(error) {
   else {
     console.log("mongoose connection is successful");
 
-  //   var db = mongoose.connection;
-  //
-  //   app.use(cookieParser());
-  //   app.use(session({
-  //     secret: 'supersecretstring12345!',
-  //     saveUninitialized: true,
-  //     resave: true,
-  //     store: new MongoStore({ mongooseConnection: db })
-  //   }));
  }
 });
 
