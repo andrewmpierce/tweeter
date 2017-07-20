@@ -58,7 +58,9 @@ app.post('/api/user/login',
     failureRedirect: '/loginFailure',
   }),
   function(req, res) {
-    res.send("Successfully logged in");
+    console.log(req.session);
+    res.send({"response":"Successfully logged in",
+              "session": req.session});
   });
 
   passport.serializeUser(function(user, done) {
@@ -70,7 +72,7 @@ app.post('/api/user/login',
   });
 
   app.get('/loginFailure', function(req, res, next) {
-    res.send('Failed to authenticate');
+    res.send({"response":'Failed to authenticate'});
   });
 
 

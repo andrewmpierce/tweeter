@@ -19,9 +19,10 @@ class UserSignInForm extends Component {
         username: event.target.username.value,
         password: event.target.password.value,
       })
-    }).then(function(response) {
+    }).then(response => response.json())
+      .then(response => {
         console.log(response);
-      });
+    })
 }
 
 
