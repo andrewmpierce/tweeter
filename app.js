@@ -6,16 +6,23 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
-var Strategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local');
+var UserController = require('./controllers/user');
+
 
 var users = require('./routes/users');
 var users_new = require ('./routes/users_new');
+//var users_sign_in = require('./routes/user_sign_in');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 
 
@@ -31,6 +38,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 //use all of our endpoints
 app.use('/api/users', users);
 app.use('/api/user/new', users_new);
+
+
+////////////////////////////////////////////////
+//Handle user log in and authentication
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    userController.get({ username: username }, function (err, user) {
+      console.log(err);
+      if (err) { return done(err); }
+      if (!user) { return done(null, false); }
+      if (!user.verifyPassword(password)) { return done(null, false); }
+      return done(null, user);
+    });
+  }
+));
+
+app.post('/api/user/login',
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    console.log("blah blah blah");
+    res.send;
+  });
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

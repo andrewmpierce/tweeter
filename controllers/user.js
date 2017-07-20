@@ -3,8 +3,21 @@ var User = require("../models/User");
 
 module.exports = {
 
-  get: function(query, cb) {
+  getAll: function(query, cb) {
     User.find(query)
+      .sort({
+        _id: -1
+      })
+      // Execute this query
+      .exec(function(err, doc) {
+        // Once finished, pass the list into the callback function
+        cb(doc);
+      });
+
+  },
+
+  get: function(query, cb) {
+    User.findOne(query)
       .sort({
         _id: -1
       })
@@ -23,7 +36,7 @@ module.exports = {
       username: data.username,
       password: data.password
     };
-    
+
     User.create(newUser, function(err, doc) {
       // Log any errors
       if (err) {
