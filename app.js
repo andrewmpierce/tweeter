@@ -44,22 +44,37 @@ app.use('/api/user/new', users_new);
 //Handle user log in and authentication
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    userController.get({ username: username }, function (err, user) {
+    UserController.get({ "username": username }, function (user, err) {
       console.log(err);
       if (err) { return done(err); }
       if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
+      if (!user.password === password) { return done(null, false); }
       return done(null, user);
     });
   }
 ));
 
 app.post('/api/user/login',
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function(req, res) {
-    console.log("blah blah blah");
-    res.send;
+  passport.authenticate('local', {
+    failureRedirect: '/loginFailure',
+    successRedirect: '/loginSuccess',
+  }));
+
+  passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+  app.get('/loginFailure', function(req, res, next) {
+    res.send('Failed to authenticate');
   });
+
+  app.get('/loginSuccess', function(req, res, next) {
+    res.send('Successfully authenticated');
+});
 
 
 // catch 404 and forward to error handler
