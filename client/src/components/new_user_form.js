@@ -25,12 +25,15 @@ class NewUserForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" name="username" />
-        <input type="text" name="password" />
-        <input type="submit" value="Submit" />
+      <div>
+        <h6>Sign Up</h6>
+        <form onSubmit={this.handleSubmit}>
+          <input type="text" name="username" placeholder="username" />
+          <input type="text" name="password" placeholder="password" />
+          <input type="submit" value="Submit" />
 
-      </form>
+        </form>
+      </div>
     );
   }
 }
