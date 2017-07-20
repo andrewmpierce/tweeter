@@ -8,6 +8,9 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var UserController = require('./controllers/user');
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 
 var users = require('./routes/users');
@@ -39,7 +42,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/users', users);
 app.use('/api/user/new', users_new);
 
-
 ////////////////////////////////////////////////
 //Handle user log in and authentication
 passport.use(new LocalStrategy(
@@ -59,6 +61,8 @@ app.post('/api/user/login',
   }),
   function(req, res) {
     console.log(req.session);
+    //req.session.passport.user.username = id;
+    //req.session.save();
     res.send({"response":"Successfully logged in",
               "session": req.session});
   });
@@ -97,10 +101,10 @@ app.use(function(err, req, res, next) {
 });
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var db = process.env.MONGODB_URI || "mongodb://localhost/Tweeter";
+var dbURL = process.env.MONGODB_URI || "mongodb://localhost/Tweeter";
 
 // Connect mongoose to our database
-mongoose.connect(db, function(error) {
+mongoose.connect(dbURL, function(error) {
   // Log any errors connecting with mongoose
   if (error) {
     console.log(error);
@@ -108,7 +112,19 @@ mongoose.connect(db, function(error) {
   // Or log a success message
   else {
     console.log("mongoose connection is successful");
-  }
+
+  //   var db = mongoose.connection;
+  //
+  //   app.use(cookieParser());
+  //   app.use(session({
+  //     secret: 'supersecretstring12345!',
+  //     saveUninitialized: true,
+  //     resave: true,
+  //     store: new MongoStore({ mongooseConnection: db })
+  //   }));
+ }
 });
+
+
 
 module.exports = app;

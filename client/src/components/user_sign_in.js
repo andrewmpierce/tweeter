@@ -22,6 +22,10 @@ class UserSignInForm extends Component {
     }).then(response => response.json())
       .then(response => {
         console.log(response);
+        if (response.response === "Successfully logged in") {
+          localStorage.setItem('userLoggedIn', response.session.passport.user.username);
+          this.props.onUserLogIn();
+        }
     })
 }
 
