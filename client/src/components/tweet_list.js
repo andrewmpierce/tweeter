@@ -8,7 +8,6 @@ class TweetList extends Component {
       .then(res => res.json())
       .then(tweets => {
         this.setState({ tweets });
-        console.log(tweets);
       })
   }
 
