@@ -27,7 +27,7 @@ class TweetList extends Component {
       <div>
         <NewTweet _id={this.props._id} username={this.props.username} onNewTweet={this.updateTweets} />
           <div className="App">
-           <h1>Tweets</h1>
+           <h4 className="center-align">Tweets</h4>
            {this.state.tweets.map(tweet =>
              <div className="card-panel" key={tweet._id}>{tweet.username} says: {tweet.text}</div>
            )}

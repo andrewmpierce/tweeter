@@ -4,7 +4,6 @@ import NewUserForm from './components/new_user_form';
 import UserSignInForm from './components/user_sign_in';
 import TweetList from './components/tweet_list';
 import CurrentUser from './components/current_user';
-import LogoutButton from './components/logout_button';
 import './css/materialize.css';
 
 class App extends Component {
@@ -31,10 +30,11 @@ class App extends Component {
     return (
       <div className="grey lighten-4">
         <Header />
-        <CurrentUser currentUser={this.state.currentUser} />
-        <LogoutButton onUserLogIn={this.updateCurrentUser} />
-        <NewUserForm username={this.state.currentUser} />
-        <UserSignInForm username={this.state.currentUser} onUserLogIn={this.updateCurrentUser} />
+        <CurrentUser currentUser={this.state.currentUser} onUserLogOut={this.updateCurrentUser} />
+        <div className="row">
+          <NewUserForm username={this.state.currentUser} />
+          <UserSignInForm username={this.state.currentUser} onUserLogIn={this.updateCurrentUser} />
+        </div>
         <TweetList _id={this.state.currentUserID} username={this.state.currentUser} />
       </div>
     );

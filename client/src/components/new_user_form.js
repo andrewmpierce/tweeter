@@ -28,12 +28,12 @@ class NewUserForm extends Component {
       return (<div></div>);
     }
     return (
-      <div>
+      <div className="col s6">
         <h6>Sign Up</h6>
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="username" placeholder="username" />
           <input type="text" name="password" placeholder="password" />
-          <input type="submit" value="Sign Up" />
+          <input className="waves-effect waves-light btn" type="submit" value="Sign Up" />
 
         </form>
       </div>

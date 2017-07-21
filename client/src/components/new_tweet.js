@@ -27,13 +27,15 @@ class NewTweetForm extends Component {
 
   render() {
     return (
-      <div>
-        <h6>Tweet Away!</h6>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="new_tweet" placeholder="Tweets..." />
-          <input type="submit" value="Tweet" />
+      <div className="row">
+        <div className="col s12 left-align">
+          <h4>Tweet Away!</h4>
+          <form onSubmit={this.handleSubmit}>
+            <input type="text" name="new_tweet" placeholder="Tweets..." />
+            <input className="waves-effect waves-light btn" type="submit" value="Tweet" />
 
-        </form>
+          </form>
+        </div>
       </div>
     );
   }

@@ -1,13 +1,14 @@
 import React from 'react';
 
-const Logout = ({onUserLogIn}) => {
+const Logout = ({onUserLogOut}) => {
   function logout () {
     localStorage.clear();
-    onUserLogIn();
+    onUserLogOut();
   }
 
+
   return (
-    <div className="row">
+    <div>
       <button className="waves-effect waves-light btn" onClick={logout}>
         Log Out
       </button>
