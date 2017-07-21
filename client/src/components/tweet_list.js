@@ -29,7 +29,7 @@ class TweetList extends Component {
           <div className="App">
            <h1>Tweets</h1>
            {this.state.tweets.map(tweet =>
-             <div className="card-panel col-1" key={tweet._id}>{tweet.username} says: {tweet.text}</div>
+             <div className="card-panel" key={tweet._id}>{tweet.username} says: {tweet.text}</div>
            )}
          </div>
      </div>

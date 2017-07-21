@@ -7,9 +7,11 @@ const Logout = ({onUserLogIn}) => {
   }
 
   return (
-    <button onClick={logout}>
-      Log Out
-    </button>
+    <div className="row">
+      <button className="waves-effect waves-light btn" onClick={logout}>
+        Log Out
+      </button>
+    </div>
   );
 };
 

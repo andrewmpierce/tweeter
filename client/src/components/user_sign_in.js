@@ -31,6 +31,9 @@ class UserSignInForm extends Component {
 
 
   render() {
+    if (this.props.username) {
+      return (<div></div>);
+    }
     return (
       <div>
         <h6>Login</h6>
