@@ -21,6 +21,7 @@ class NewTweetForm extends Component {
         username: this.props.username
       })
     });
+    this.props.onNewTweet();
 }
 
 

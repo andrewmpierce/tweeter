@@ -5,7 +5,6 @@ import NewUserForm from './components/new_user_form';
 import UserSignInForm from './components/user_sign_in';
 import TweetList from './components/tweet_list';
 import CurrentUser from './components/current_user';
-import NewTweet from './components/new_tweet';
 import LogoutButton from './components/logout_button';
 
 class App extends Component {
@@ -36,8 +35,7 @@ class App extends Component {
         <NewUserForm />
         <UserSignInForm onUserLogIn={this.updateCurrentUser} />
         <LogoutButton onUserLogIn={this.updateCurrentUser} />
-        <NewTweet _id={this.state.currentUserID} username={this.state.currentUser} />
-        <TweetList />
+        <TweetList _id={this.state.currentUserID} username={this.state.currentUser} />
       </div>
     );
   }

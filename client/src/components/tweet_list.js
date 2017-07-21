@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
+import NewTweet from './new_tweet';
+
 
 class TweetList extends Component {
+  constructor(props) {
+     super(props);
+     this.updateTweets = this.updateTweets.bind(this);
+
+  }
   state = {tweets: []};
 
-  componentDidMount() {
+  updateTweets() {
     fetch('/api/tweets')
       .then(res => res.json())
       .then(tweets => {
         this.setState({ tweets });
-      })
+      });
+  }
+
+  componentDidMount() {
+    this.updateTweets();
   }
 
   render() {
     return (
       <div>
-        <div className="App">
-         <h1>Tweets</h1>
-         {this.state.tweets.map(tweet =>
-           <div key={tweet._id}>{tweet.username} says: {tweet.text}</div>
-         )}
-       </div>
+        <NewTweet _id={this.props._id} username={this.props.username} onNewTweet={this.updateTweets} />
+          <div className="App">
+           <h1>Tweets</h1>
+           {this.state.tweets.map(tweet =>
+             <div key={tweet._id}>{tweet.username} says: {tweet.text}</div>
+           )}
+         </div>
      </div>
     );
   }
