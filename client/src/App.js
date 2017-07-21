@@ -5,6 +5,7 @@ import UserSignInForm from './components/user_sign_in';
 import TweetList from './components/tweet_list';
 import CurrentUser from './components/current_user';
 import LogoutButton from './components/logout_button';
+import './css/materialize.css';
 
 class App extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="grey lighten-4">
         <Header />
         <CurrentUser currentUser={this.state.currentUser} />
         <NewUserForm username={this.state.currentUser} />
