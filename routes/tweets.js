@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var TweetController = require('../controllers/tweet');
+var UserController = require('../controllers/user');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -11,8 +12,8 @@ router.get('/', function(req, res, next) {
 	var query = {};
 	TweetController.getAll(query, function(data) {
       // Send the article data back as JSON
-      res.json(data);
-    });
+    res.json(data);
+  });
 });
 
 module.exports = router;

@@ -33,7 +33,8 @@ module.exports = {
     var newTweet = {
       dateJoined: Date(),
       text: data.text,
-      _userId: data._id
+      _userId: data._id,
+      username: data.username
     };
     Tweet.create(newTweet, function(err, doc) {
       // Log any errors

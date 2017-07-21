@@ -9,6 +9,9 @@ var TweetSchema = new Schema({
   date: {
     type: Date
   },
+  username: {
+    type: String
+  },
   _userId: {
    type: Schema.Types.ObjectId,
    ref: "User"

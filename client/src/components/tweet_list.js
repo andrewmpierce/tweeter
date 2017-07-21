@@ -18,7 +18,7 @@ class TweetList extends Component {
         <div className="App">
          <h1>Tweets</h1>
          {this.state.tweets.map(tweet =>
-           <div key={tweet._id}>{tweet.text}</div>
+           <div key={tweet._id}>{tweet.username} says: {tweet.text}</div>
          )}
        </div>
      </div>

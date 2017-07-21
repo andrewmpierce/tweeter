@@ -34,7 +34,7 @@ class App extends Component {
         <CurrentUser currentUser={this.state.currentUser} />
         <NewUserForm />
         <UserSignInForm onUserLogIn={this.updateCurrentUser} />
-        <NewTweet _id={this.state.currentUserID} />
+        <NewTweet _id={this.state.currentUserID} username={this.state.currentUser} />
         <TweetList />
       </div>
     );

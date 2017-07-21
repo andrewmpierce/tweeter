@@ -8,10 +8,6 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var UserController = require('./controllers/user');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
-
 
 var tweets = require('./routes/tweets');
 var users_new = require ('./routes/users_new');
@@ -62,7 +58,6 @@ app.post('/api/user/login',
     failureRedirect: '/loginFailure',
   }),
   function(req, res) {
-    console.log(req.session);
     res.send({"response":"Successfully logged in",
               "session": req.session});
   });
