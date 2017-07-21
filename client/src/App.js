@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import Header from './components/header';
 import NewUserForm from './components/new_user_form';
 import UserSignInForm from './components/user_sign_in';
@@ -32,8 +31,8 @@ class App extends Component {
       <div>
         <Header />
         <CurrentUser currentUser={this.state.currentUser} />
-        <NewUserForm />
-        <UserSignInForm onUserLogIn={this.updateCurrentUser} />
+        <NewUserForm username={this.state.currentUser} />
+        <UserSignInForm username={this.state.currentUser} onUserLogIn={this.updateCurrentUser} />
         <LogoutButton onUserLogIn={this.updateCurrentUser} />
         <TweetList _id={this.state.currentUserID} username={this.state.currentUser} />
       </div>

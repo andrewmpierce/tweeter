@@ -24,6 +24,9 @@ class NewUserForm extends Component {
 
 
   render() {
+    if (this.props.username) {
+      return (<div></div>);
+    }
     return (
       <div>
         <h6>Sign Up</h6>
