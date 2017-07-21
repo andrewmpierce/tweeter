@@ -8,7 +8,6 @@ class UserSignInForm extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
     fetch('/api/user/login', {
       method: 'POST',
       headers: {

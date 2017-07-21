@@ -8,7 +8,6 @@ class NewUserForm extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
     fetch('/api/user/new', {
       method: 'POST',
       headers: {

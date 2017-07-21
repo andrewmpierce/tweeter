@@ -8,7 +8,6 @@ class NewTweetForm extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
     fetch('/api/tweet/new', {
       method: 'POST',
       headers: {
