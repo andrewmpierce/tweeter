@@ -11,8 +11,9 @@ var UserController = require('./controllers/user');
 
 var tweets = require('./routes/tweets');
 var users_new = require ('./routes/users_new');
-//var users_sign_in = require('./routes/user_sign_in');
+var user_login = require('./routes/user_sign_in');
 var tweet_new = require('./routes/new_tweet');
+var login_failure = require('./routes/login_failure');
 
 var app = express();
 
@@ -39,6 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/tweets', tweets);
 app.use('/api/user/new', users_new);
 app.use('/api/tweet/new', tweet_new);
+app.use('/api/user/login', user_login);
+app.use('/api/loginFailure', login_failure);
 
 ////////////////////////////////////////////////
 //Handle user log in and authentication
@@ -53,26 +56,12 @@ passport.use(new LocalStrategy(
   }
 ));
 
-app.post('/api/user/login',
-  passport.authenticate('local', {
-    failureRedirect: '/loginFailure',
-  }),
-  function(req, res) {
-    console.log(req);
-    res.send({"response":"Successfully logged in",
-              "session": req.session});
-  });
-
   passport.serializeUser(function(user, done) {
     done(null, user);
   });
 
   passport.deserializeUser(function(user, done) {
     done(null, user);
-  });
-
-  app.get('/loginFailure', function(req, res, next) {
-    res.send({"response":'Failed to authenticate'});
   });
 
 // catch 404 and forward to error handler

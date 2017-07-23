@@ -4,9 +4,12 @@ var passport = require('passport');
 
 
 router.post('/',
-  passport.authenticate('local', { failureRedirect: '/login' }),
+  passport.authenticate('local', {
+    failureRedirect: '/api/loginFailure',
+  }),
   function(req, res) {
-    res.redirect('/');
+    res.send({"response":"Successfully logged in",
+              "session": req.session});
   });
 
 module.exports = router;
