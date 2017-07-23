@@ -5,24 +5,34 @@ class AuthenticationForm extends Component {
   constructor(props) {
      super(props);
      this.handleSubmit = this.handleSubmit.bind(this);
-     if (this.props.action === 'login') {
-       this.state =  {
-         url: '/api/user/login',
-         button: 'Login',
-         action: 'login',
-       };
-     } else {
-       this.state =  {
-         url: '/api/user/new',
-         button: 'Sign Up',
-         action: 'signin',
-       };
-     }
+     this.state =  {
+        url: '',
+        button: '',
+      };
+     this.updateState(this.props.action);
+  }
+
+  componentDidUpdate () {
+      this.updateState(this.props.action);
+  }
+
+  updateState(action) {
+    if (action === 'login') {
+      this.state =  {
+        url: '/api/user/login',
+        button: 'Login',
+      };
+    } else {
+      this.state =  {
+        url: '/api/user/new',
+        button: 'Sign Up',
+      };
+    }
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.url);
+    event.persist();
     fetch(this.state.url, {
       method: 'POST',
       headers: {
@@ -40,8 +50,9 @@ class AuthenticationForm extends Component {
           localStorage.setItem('userLoggedInID', response.session.passport.user._id);
           this.props.onUserLogIn();
         } if (response.response === "Successfully created user") {
-            this.setState({action:"login"});
-            
+            this.updateState('login');
+            this.handleSubmit(event);
+
         }
     })
 }
