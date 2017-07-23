@@ -58,6 +58,7 @@ app.post('/api/user/login',
     failureRedirect: '/loginFailure',
   }),
   function(req, res) {
+    console.log(req);
     res.send({"response":"Successfully logged in",
               "session": req.session});
   });

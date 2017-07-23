@@ -17,6 +17,13 @@ class NewUserForm extends Component {
       body: JSON.stringify({
         username: event.target.username.value,
         password: event.target.password.value,
+      }).then(response => response.json())
+        .then(response => {
+          if (response.response === "Successfully logged in") {
+            localStorage.setItem('userLoggedIn', response.session.passport.user.username);
+            localStorage.setItem('userLoggedInID', response.session.passport.user._id);
+            this.props.onUserLogIn();
+          }
       })
     });
 }

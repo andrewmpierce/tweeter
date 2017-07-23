@@ -6,9 +6,10 @@ class TweetList extends Component {
   constructor(props) {
      super(props);
      this.updateTweets = this.updateTweets.bind(this);
+     this.state = {tweets: []};
 
   }
-  state = {tweets: []};
+
 
   updateTweets() {
     fetch('/api/tweets')

@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
 
 
-class UserSignInForm extends Component {
+class AuthenticationForm extends Component {
   constructor(props) {
      super(props);
      this.handleSubmit = this.handleSubmit.bind(this);
+     if (this.props.action === 'login') {
+       this.state =  {
+         url: '/api/user/login',
+         button: 'Login',
+         action: 'login',
+       };
+     } else {
+       this.state =  {
+         url: '/api/user/new',
+         button: 'Sign Up',
+         action: 'signin',
+       };
+     }
   }
 
   handleSubmit(event) {
-    fetch('/api/user/login', {
+    event.preventDefault();
+    console.log(this.state.url);
+    fetch(this.state.url, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -24,6 +39,9 @@ class UserSignInForm extends Component {
           localStorage.setItem('userLoggedIn', response.session.passport.user.username);
           localStorage.setItem('userLoggedInID', response.session.passport.user._id);
           this.props.onUserLogIn();
+        } if (response.response === "Successfully created user") {
+            this.setState({action:"login"});
+            
         }
     })
 }
@@ -35,11 +53,11 @@ class UserSignInForm extends Component {
     }
     return (
       <div className="col s6">
-        <h6>Login</h6>
+        <h6>{this.state.button}</h6>
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="username" placeholder="username" />
           <input type="text" name="password" placeholder="password" />
-          <input className="waves-effect waves-light btn" type="submit" value="Login" />
+          <input className="waves-effect waves-light btn" type="submit" value={this.state.button} />
 
         </form>
       </div>
@@ -47,4 +65,4 @@ class UserSignInForm extends Component {
   }
 }
 
-export default UserSignInForm;
+export default AuthenticationForm;
