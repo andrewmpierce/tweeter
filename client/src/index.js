@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Header from './components/header';
-import registerServiceWorker from './registerServiceWorker';
+//import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
@@ -15,4 +15,3 @@ ReactDOM.render(
         </Switch>
       </div>
   </BrowserRouter>, document.getElementById('root'));
-registerServiceWorker();
