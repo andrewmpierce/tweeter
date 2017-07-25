@@ -33,10 +33,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 //use all of our endpoints
+
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+});
+
 app.use('/api/tweets', tweets);
 app.use('/api/user/new', users_new);
 app.use('/api/tweet/new', tweet_new);
