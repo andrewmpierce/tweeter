@@ -36,12 +36,12 @@ app.use(cookieParser());
 
 
 //use all of our endpoints
-
-app.use(express.static(path.join(__dirname, 'client/build')));
-
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-});
+// 
+// app.use(express.static(path.join(__dirname, 'client/build')));
+//
+// app.get('/', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+// });
 
 app.use('/api/tweets', tweets);
 app.use('/api/user/new', users_new);
